@@ -1,9 +1,13 @@
 //import { useNavigate } from "react-router-dom"
 import { Button, Grid, TextField } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import {useState} from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp=()=>{
+    const navigate=useNavigate()
     const [text,setText]=useState({})
 
     const handleChange=(e)=>{
@@ -20,6 +24,7 @@ const SignUp=()=>{
             .catch((err)=>console.log(err))
             
             alert("registerd succedssfully")
+            navigate('/')
         }
         else{
            alert('invalid input')
@@ -29,8 +34,9 @@ const SignUp=()=>{
    // const navigate=useNavigate()
     return(
         <>
-       
-        <Grid container spacing={2}>
+        <Container fixed>
+          <Box sx={{bgcolor:'#cfe8fc',height:'100vh'}}>
+        <Grid container spacing={2} >
                 <Grid item lg={12} mx={24} >
                     <TextField 
                         name="name" 
@@ -60,6 +66,7 @@ const SignUp=()=>{
                         name="password" 
                         label="Password" 
                         variant="filled" 
+                        type="password"
                         onChange={handleChange}
                     />
                     </Grid>
@@ -68,6 +75,7 @@ const SignUp=()=>{
                         name="ConfirmPassword" 
                         label="ConfirmPasssword" 
                         variant="filled" 
+                        type="password"
                         onChange={handleChange}
                     />
                     </Grid>
@@ -79,6 +87,8 @@ const SignUp=()=>{
                     </Button>
                 </Grid>
             </Grid>
+            </Box>
+            </Container>
         
         </>
     )
